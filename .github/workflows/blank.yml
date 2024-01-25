@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up environment
+        run: |
+          echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
+          # This sets the API_KEY environment variable for subsequent steps
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+      # Now you can use the API_KEY environment variable in your code
